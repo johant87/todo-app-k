@@ -35,7 +35,7 @@ class ShowAllLists extends React.Component {
       <AddListItem onChange={this.showLists.bind(this)} />
       {this.state.lists.map(function(list, i) {
         return(
-          <ListItem onChange={this.showLists.bind(this)} key={list.id} id={list.id} title={list.title}/>
+          <ListItem onChange={this.showLists.bind(this)} key={list.id} id={list.id} title={list.title} onDestroy={this.showLists.bind(this)}/>
           );
         }, this)}
       </div>

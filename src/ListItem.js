@@ -17,11 +17,34 @@ componentDidMount() {
     });
   }
 
+  deleteListItem(event) {
+    event.preventDefault();
+
+    let component = this;
+
+    jQuery.ajax({
+      type: "DELETE",
+      url: "https://todo-api-johan.herokuapp.com/lists/" +  this.props.id + ".json",
+      contentType: "application/json",
+      dataType: "json"
+    })
+      .done(function(data) {
+        console.log("list item Deleted!");
+      })
+
+      .fail(function(error) {
+        console.log(error);
+      })
+
+      .always(function() {
+        component.props.onDestroy();
+      });
+  }
+
   render() {
     return (
       <div>
-      listitem
-       <h2>{this.state.title}</h2>
+       <h2>{this.state.title}</h2> <button onClick={this.deleteListItem.bind(this)}><i className="fa fa-trash-o"></i>delete</button>
       </div>
       );
   }
