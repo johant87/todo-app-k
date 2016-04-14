@@ -2,6 +2,7 @@ import React from 'react';
 import jQuery from 'jquery';
 import { Router, Route, Link, browserHistory } from 'react-router';
 import ListItem from './ListItem';
+import AddListItem from './AddListItem';
 
 class ShowAllLists extends React.Component {
   constructor() {
@@ -31,10 +32,10 @@ class ShowAllLists extends React.Component {
       console.log("showlist mount",this.state.lists);
     return (
       <div>
-      test
+      <AddListItem onChange={this.showLists.bind(this)} />
       {this.state.lists.map(function(list, i) {
         return(
-          <ListItem key={list.id} id={list.id} title={list.title}/>
+          <ListItem onChange={this.showLists.bind(this)} key={list.id} id={list.id} title={list.title}/>
           );
         }, this)}
       </div>
