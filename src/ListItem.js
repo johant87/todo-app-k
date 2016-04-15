@@ -1,5 +1,6 @@
 import React from 'react';
 import jQuery from 'jquery';
+import { Router, Route, Link, browserHistory } from 'react-router';
 
 class ListItem extends React.Component {
   constructor() {
@@ -16,6 +17,7 @@ componentDidMount() {
       title: this.props.title
     });
   }
+
 
   deleteListItem(event) {
     event.preventDefault();
@@ -44,7 +46,7 @@ componentDidMount() {
   render() {
     return (
       <div>
-       <h2>{this.state.title}</h2> <button onClick={this.deleteListItem.bind(this)}><i className="fa fa-trash-o"></i>delete</button>
+       <h2><Link to={`/lists/${this.state.id}`}>{this.state.title}</Link></h2> <button onClick={this.deleteListItem.bind(this)}><i className="fa fa-trash-o"></i>delete</button>
       </div>
       );
   }
