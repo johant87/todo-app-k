@@ -53,7 +53,6 @@ class ShowList extends React.Component {
   }
   fetchList() {
     let listId = this.props.params.listId;
-    console.log("show me the monny", listId)
     let component = this;
     jQuery.getJSON("https://todo-api-johan.herokuapp.com/lists/" + listId + ".json", function(data){
       component.setState({

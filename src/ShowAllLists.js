@@ -31,13 +31,15 @@ class ShowAllLists extends React.Component {
   render() {
       console.log("showlist mount",this.state.lists);
     return (
-      <div>
-      <AddListItem onChange={this.showLists.bind(this)} />
-      {this.state.lists.map(function(list, i) {
-        return(
-          <ListItem onChange={this.showLists.bind(this)} key={list.id} id={list.id} title={list.title} onDestroy={this.showLists.bind(this)}/>
-          );
-        }, this)}
+      <div className="container">
+        <div className="col-md-8 col-md-offset-2">
+        <AddListItem onChange={this.showLists.bind(this)} />
+        {this.state.lists.map(function(list, i) {
+          return(
+            <ListItem onChange={this.showLists.bind(this)} key={list.id} id={list.id} title={list.title} onDestroy={this.showLists.bind(this)}/>
+            );
+          }, this)}
+        </div>
       </div>
       );
   }

@@ -8,12 +8,14 @@ class AddListItem extends React.Component {
 
   createList(event) {
     event.preventDefault();
-
+    console.log("Creating list...")
     let component = this;
     let title = this.refs.list.value;
+    let description = this.refs.description.value;
     let newList = {
       id: null,
       title: title,
+      body: description,
       finished: false
     };
     jQuery.ajax({
@@ -28,6 +30,7 @@ class AddListItem extends React.Component {
       .done(function(data) {
         component.props.onChange();
         component.refs.list.value = "";
+        component.refs.description.value = "";
       })
 
       .fail(function(error) {
@@ -42,8 +45,12 @@ class AddListItem extends React.Component {
       <div>
        <form onSubmit={this.createList.bind(this)}>
          <div className="form-group">
-           <input type="Task" ref="list" className="form-control"  placeholder="Add new to do List" />
+           <input ref="list" className="form-control"  placeholder="Add new to do List" />
+          </div>
+          <div classNAme="form-group">
+           <input ref="description" className="form-control"  placeholder="Description" />
          </div>
+        <button type="submit" className="btn btn-default">Submit</button>
        </form>
      </div>
     );

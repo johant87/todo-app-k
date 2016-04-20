@@ -11,11 +11,13 @@ class TaskForm extends React.Component {
 
     let component = this;
     let title = this.refs.newTaskInput.value;
+    let description = this.refs.newTaskDescription.value;
     let listId = this.props.listId;
 
     let newTask = {
       id: null,
       title: title,
+      body: description,
       finished: false
     };
 
@@ -31,6 +33,7 @@ class TaskForm extends React.Component {
       .done(function(data) {
         component.props.onChange();
         component.refs.newTaskInput.value = "";
+        component.refs.newTaskDescription.value = "";
       })
 
       .fail(function(error) {
@@ -44,6 +47,9 @@ class TaskForm extends React.Component {
        <form onSubmit={this.createTask.bind(this)}>
          <div className="form-group">
            <input type="Task" ref="newTaskInput" className="form-control"  placeholder="Add new task" />
+        </div>
+          <div className="form-group">
+           <input type="Description" ref="newTaskDescription" className="form-control"  placeholder="description" />
          </div>
        </form>
      </div>
